@@ -18,12 +18,12 @@ public class Program
 
 		builder.Services.AddCors(options =>
 		{
-		    options.AddPolicy("AllowFrontend", policy =>
+		    options.AddDefaultPolicy(policy =>
 		    {
 		        policy
-		            .WithOrigins("http://localhost", "http://127.0.0.1", "http://localhost:3000")
-		            .AllowAnyHeader()
-		            .AllowAnyMethod();
+		            .AllowAnyOrigin()
+		            .AllowAnyMethod()
+		            .AllowAnyHeader();
 		    });
 		});
 
@@ -37,7 +37,7 @@ public class Program
 
 		WebApplication app = builder.Build();
 
-		app.UseCors("AllowFrontend");
+		app.UseCors();
 
 		if (app.Environment.IsDevelopment())
 		{
