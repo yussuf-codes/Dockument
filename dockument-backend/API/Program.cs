@@ -21,7 +21,7 @@ public class Program
 		    options.AddPolicy("AllowFrontend", policy =>
 		    {
 		        policy
-		            .WithOrigins("http://localhost:80")
+		            .WithOrigins("http://localhost", "http://127.0.0.1", "http://localhost:3000")
 		            .AllowAnyHeader()
 		            .AllowAnyMethod();
 		    });
@@ -32,11 +32,6 @@ public class Program
 		builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("Database"));
 
 		// string connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"] ?? throw new Exception("Connection string is not provided.");
-
-		// builder.Services.AddDbContext<ApplicationDbContext>
-		// (
-		// 		options => options.UseSqlServer(connectionString)
-		// );
 
 		builder.Services.AddOpenApi();
 

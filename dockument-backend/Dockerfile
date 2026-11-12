@@ -22,10 +22,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS final
 
 WORKDIR /app
 
-ENV ASPNETCORE_HTTP_PORTS=5001 \
+ENV ASPNETCORE_HTTP_PORTS=8080 \
 	DOTNET_EnableDiagnostics=0
 
-EXPOSE 5001
+EXPOSE 8080
 
 COPY --from=build --chown=$APP_UID:$APP_UID /app/publish .
 
