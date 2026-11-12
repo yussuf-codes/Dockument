@@ -1,0 +1,18 @@
+# Source-control and IDE metadata
+.git/
+.github/
+.vs/
+.vscode/
+
+# Build output
+**/bin/
+**/obj/
+**/out/
+**/TestResults/
+artifacts/
+
+# Files not required by the image build
+Dockerfile*
+docker-compose*.yml
+compose*.yml
+**/*.md

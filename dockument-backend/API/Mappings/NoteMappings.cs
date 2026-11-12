@@ -1,0 +1,27 @@
+using API.DTOs.Requests;
+using API.DTOs.Responses;
+using API.Models;
+
+namespace API.Mappings;
+
+public static class NoteMappings
+{
+	public static NoteResponse MapToResponse(this Note note)
+	{
+		return new NoteResponse()
+		{
+			Id = note.Id,
+			Title = note.Title,
+			Body = note.Body
+		};
+	}
+
+	public static Note MapToNote(this NoteRequest request)
+	{
+		return new Note()
+		{
+			Title = request.Title,
+			Body = request.Body
+		};
+	}
+}

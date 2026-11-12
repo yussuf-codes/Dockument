@@ -1,0 +1,40 @@
+services:
+  frontend:
+    image: dockument-frontend:local
+    build:
+      context: ./dockument-frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:5001}
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+  backend:
+    image: dockument-backend:local
+    build:
+      context: ./dockument-backend
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    init: true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+#   mongo:
+#     image: mongo:latest
+#     container_name: mongodb
+#     restart: unless-stopped
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: w8lpI7JX4sXenVi5
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo_dev_db:/data/db
+#       - mongo_config:/data/configdb
+
+# volumes:
+#   mongo_dev_db:
+#   mongo_config:
